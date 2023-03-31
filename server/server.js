@@ -13,18 +13,23 @@ const server = new ApolloServer({typeDefs, resolvers, context: authMiddleware});
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(routes);
-
-const StartApolloServer = async (typeDefs, resolvers) => {
-  await server.start(),
-  server.applyMiddleware({app})
-  db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`🌍 Now listening on localhost:${PORT}`)
-      console.log(`GraphQL running ${server.graphqlPath}`)
-    })
-  });
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
 };
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
+server.applyMiddleware({app});
+
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`🌍 Now listening on localhost:${PORT}`)
+    console.log(`GraphQL running ${server.graphqlPath}`)
+  })
+});
+
 
 
 StartApolloServer(typeDefs, resolvers);
