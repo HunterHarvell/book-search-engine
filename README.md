@@ -1,4 +1,5 @@
 # book-search-engine
+This is a GraphQL API built with an Apollo Server. It has been converted from a RESTful API. Built using MERN stack, react front end, and Mongo DB database.
 
 ## User Story
 AS AN avid reader
@@ -35,3 +36,9 @@ WHEN I click on the Remove button on a book
 THEN that book is deleted from my saved books list
 WHEN I click on the Logout button
 THEN I am logged out of the site and presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button  
+
+## Deployed Application
+
+Heroku link:
+
+Git repo link: 

@@ -18,13 +18,13 @@ app.use(routes);
 const StartApolloServer = async (typeDefs, resolvers) => {
   await server.start(),
   server.applyMiddleware({app})
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`🌍 Now listening on localhost:${PORT}`)
+      console.log(`GraphQL running ${server.graphqlPath}`)
+    })
+  });
 };
 
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`🌍 Now listening on localhost:${PORT}`)
-    console.log(`GraphQL running ${server.graphqlPath}`)
-  })
-});
 
 StartApolloServer(typeDefs, resolvers);
