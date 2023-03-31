@@ -13,6 +13,10 @@ const server = new ApolloServer({typeDefs, resolvers, context: authMiddleware});
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const _dirname = path.dirname("");
+const buildPath = path.join(_dirname, "../client/build");
+app.use(express.static(buildPath));
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 };
