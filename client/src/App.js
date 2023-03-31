@@ -6,6 +6,23 @@ import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+// JWT auth
+const authLink = setContext((_, { headers }) => {
+  // check local storage for token
+  const token = localStorage.getItem('id_token');
+  // return to context
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? 'Bearer ${token}' : '',
+    },
+  };
+});
+
 function App() {
   return (
     <ApolloProvider client={client}>
