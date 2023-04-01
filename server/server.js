@@ -32,7 +32,3 @@ db.once('open', () => {
     console.log(`GraphQL running ${server.graphqlPath}`)
   })
 });
-
-
-
-StartApolloServer(typeDefs, resolvers);
