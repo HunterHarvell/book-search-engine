@@ -39,6 +39,6 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 ## Deployed Application
 
-Heroku link:
+Heroku link: https://limitless-shore-47828.herokuapp.com/
 
-Git repo link: 
+Git repo link: https://github.com/HunterHarvell/book-search-engine.git
